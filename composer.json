@@ -1,0 +1,19 @@
+{
+    "name": "doeanderson/statamic-github-workflow-dispatch",
+    "autoload": {
+        "psr-4": {
+            "DoeAnderson\\StatamicGithubWorkflowDispatch\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic GitHub Workflow Dispatch",
+            "description": "Github Workflow Dispatch is a Statamic addon that makes it easy to run GitHub Actions workflows via Repository Dispatch Events."
+        },
+        "laravel": {
+            "providers": [
+                "DoeAnderson\\StatamicGithubWorkflowDispatch\\ServiceProvider"
+            ]
+        }
+    }
+}
