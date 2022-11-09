@@ -1,5 +1,6 @@
 {
     "name": "doeanderson/statamic-github-workflow-dispatch",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "DoeAnderson\\StatamicGithubWorkflowDispatch\\": "src"

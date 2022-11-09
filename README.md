@@ -1,6 +1,6 @@
 # Statamic GitHub Workflow Dispatch
 
-> Github Workflow Dispatch is a Statamic addon that makes it easy to run GitHub Actions workflows via Repository Dispatch Events.
+Github Workflow Dispatch is a Statamic addon that makes it easy to run GitHub Actions workflows via Repository Dispatch Events.
 
 ## Features
 
