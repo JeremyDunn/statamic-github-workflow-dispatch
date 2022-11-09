@@ -16,33 +16,33 @@ class DispatchGithubWorkflowJob implements ShouldQueue
     public function handle(): void
     {
 
-        if (! config('github-workflow-dispatch.dispatch_workflows')) {
+        if (! config('statamic-github-workflow-dispatch.dispatch_workflows')) {
             return;
         }
 
-        if (is_null(config('github-workflow-dispatch.token'))) {
+        if (is_null(config('statamic-github-workflow-dispatch.token'))) {
             return;
         }
 
-        if (is_null(config('github-workflow-dispatch.owner'))) {
+        if (is_null(config('statamic-github-workflow-dispatch.owner'))) {
             return;
         }
 
-        if (is_null(config('github-workflow-dispatch.repo'))) {
+        if (is_null(config('statamic-github-workflow-dispatch.repo'))) {
             return;
         }
 
-        if (is_null(config('github-workflow-dispatch.workflow_id'))) {
+        if (is_null(config('statamic-github-workflow-dispatch.workflow_id'))) {
             return;
         }
 
-        if (is_null(config('github-workflow-dispatch.ref'))) {
+        if (is_null(config('statamic-github-workflow-dispatch.ref'))) {
             return;
         }
 
-        Http::withToken(config('github-workflow-dispatch.token'))
-            ->post('https://api.github.com/repos/'. config('github-workflow-dispatch.owner') . '/'. config('github-workflow-dispatch.repo') . '/actions/workflows/'. config('github-workflow-dispatch.workflow_id') . '/dispatches', [
-                'ref' => config('github-workflow-dispatch.ref'),
+        Http::withToken(config('statamic-github-workflow-dispatch.token'))
+            ->post('https://api.github.com/repos/'. config('statamic-github-workflow-dispatch.owner') . '/'. config('statamic-github-workflow-dispatch.repo') . '/actions/workflows/'. config('statamic-github-workflow-dispatch.workflow_id') . '/dispatches', [
+                'ref' => config('statamic-github-workflow-dispatch.ref'),
             ]);
     }
 }
