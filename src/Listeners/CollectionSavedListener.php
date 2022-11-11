@@ -16,6 +16,8 @@ class CollectionSavedListener implements ShouldQueue
      */
     public function handle(CollectionSaved $event)
     {
-        DispatchGithubWorkflowJob::dispatch();
+        if (config('statamic-github-workflow-dispatch.event-types.collection')) {
+            DispatchGithubWorkflowJob::dispatch();
+        }
     }
 }

@@ -16,6 +16,8 @@ class FormListener implements ShouldQueue
      */
     public function handle(Event $event): void
     {
-        DispatchGithubWorkflowJob::dispatch();
+        if (config('statamic-github-workflow-dispatch.event-types.form')) {
+            DispatchGithubWorkflowJob::dispatch();
+        }
     }
 }

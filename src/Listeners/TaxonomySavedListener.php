@@ -16,6 +16,8 @@ class TaxonomySavedListener implements ShouldQueue
      */
     public function handle(TaxonomySaved $event): void
     {
-        DispatchGithubWorkflowJob::dispatch();
+        if (config('statamic-github-workflow-dispatch.event-types.taxonomy')) {
+            DispatchGithubWorkflowJob::dispatch();
+        }
     }
 }

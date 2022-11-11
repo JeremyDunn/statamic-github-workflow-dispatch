@@ -16,6 +16,8 @@ class NavSavedListener implements ShouldQueue
      */
     public function handle(NavSaved $event): void
     {
-        DispatchGithubWorkflowJob::dispatch();
+        if (config('statamic-github-workflow-dispatch.event-types.nav')) {
+            DispatchGithubWorkflowJob::dispatch();
+        }
     }
 }
