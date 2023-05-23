@@ -43,14 +43,13 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon()
     {
-        Utility::make('statamic-github-workflow-dispatch-utility')
+        Utility::register('statamic-github-workflow-dispatch-utility')
             ->title('GitHub Workflow Dispatch')
             ->description('Manually dispatch the GitHub Workflow.')
             ->icon('git')
             ->routes(function ($router) {
                 $router->get('/', [GithubWorkflowDispatchUtilityController::class, 'index'])->name('index');
                 $router->post('/', [GithubWorkflowDispatchUtilityController::class, 'dispatch'])->name('dispatch');
-            })
-            ->register();
+            });
     }
 }
