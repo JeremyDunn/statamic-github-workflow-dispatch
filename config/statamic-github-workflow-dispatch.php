@@ -9,6 +9,7 @@ return [
     'event-types' => [
         'collection' => true,
         'entry' => true,
+        'form' => true,
         'global-set' => true,
         'nav' => true,
         'taxonomy' => true,
