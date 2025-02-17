@@ -2,6 +2,8 @@
 
 namespace DoeAnderson\StatamicGithubWorkflowDispatch;
 
+use Statamic\Events\BlueprintSaved;
+use Statamic\Events\NavTreeSaved;
 use Statamic\Facades\Utility;
 use Statamic\Providers\AddonServiceProvider;
 use DoeAnderson\StatamicGithubWorkflowDispatch\Http\Controllers\CP\GithubWorkflowDispatchUtilityController;
@@ -9,6 +11,9 @@ use DoeAnderson\StatamicGithubWorkflowDispatch\Http\Controllers\CP\GithubWorkflo
 class ServiceProvider extends AddonServiceProvider
 {
     protected $listen = [
+        \Statamic\Events\BlueprintSaved::class => [
+            \DoeAnderson\StatamicGithubWorkflowDispatch\Listeners\BlueprintSavedListener::class,
+        ],
         \Statamic\Events\CollectionSaved::class => [
             \DoeAnderson\StatamicGithubWorkflowDispatch\Listeners\CollectionSavedListener::class,
         ],
@@ -28,6 +33,9 @@ class ServiceProvider extends AddonServiceProvider
             \DoeAnderson\StatamicGithubWorkflowDispatch\Listeners\GlobalSetSavedListener::class,
         ],
         \Statamic\Events\NavSaved::class => [
+            \DoeAnderson\StatamicGithubWorkflowDispatch\Listeners\NavSavedListener::class,
+        ],
+        \Statamic\Events\NavTreeSaved::class => [
             \DoeAnderson\StatamicGithubWorkflowDispatch\Listeners\NavSavedListener::class,
         ],
         \Statamic\Events\TaxonomySaved::class => [

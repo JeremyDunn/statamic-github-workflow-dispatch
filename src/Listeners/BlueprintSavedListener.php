@@ -3,14 +3,14 @@
 namespace DoeAnderson\StatamicGithubWorkflowDispatch\Listeners;
 
 use DoeAnderson\StatamicGithubWorkflowDispatch\Jobs\DispatchGithubWorkflowJob;
-use Statamic\Events\CollectionSaved;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Statamic\Events\BlueprintSaved;
 
-class CollectionSavedListener implements ShouldQueue
+class BlueprintSavedListener implements ShouldQueue
 {
-    public function handle(CollectionSaved $event)
+    public function handle(BlueprintSaved $event): void
     {
-        if (config('statamic-github-workflow-dispatch.event-types.collection')) {
+        if ($event->blueprint->namespace() === 'forms' && config('statamic-github-workflow-dispatch.event-types.form')) {
             DispatchGithubWorkflowJob::dispatch();
         }
     }
