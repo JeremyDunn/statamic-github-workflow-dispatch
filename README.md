@@ -32,16 +32,25 @@ When a configured Statamic event fires (entry, term, nav, global set, collection
 
 ### Multisite
 
-Set `GITHUB_MULTISITE=true` to have the affected site determine the ref instead of `GITHUB_REF`. Map site handles to refs in the published config:
+Set `GITHUB_MULTISITE=true` to pass the affected site to the workflow as a `site` input. The ref is always `GITHUB_REF` and must be a real branch or tag. Map site handles to input values in the published config:
 
 ``` php
 'sites' => [
-    'default' => 'main',
-    'french' => 'deploy/fr',
+    'default' => 'main-site',
+    'french' => 'french-site',
 ],
 ```
 
-Sites not in the map use their handle as the ref. Events that aren't tied to a single site (collections, taxonomies, terms, forms, global sets, blueprint saves, and the manual utility dispatch) dispatch the workflow once per site.
+Sites not in the map use their handle as the input value. Your workflow must declare the input:
+
+``` yaml
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        required: true
+        type: string
+``` Events that aren't tied to a single site (collections, taxonomies, terms, forms, global sets, blueprint saves, and the manual utility dispatch) dispatch the workflow once per site.
 
 You can also publish the config file to toggle individual event types:
 

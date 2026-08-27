@@ -56,26 +56,31 @@ class DispatchGithubWorkflowJob implements ShouldQueue
             return;
         }
 
-        if (is_null($this->ref())) {
+        if (is_null(config('statamic-github-workflow-dispatch.ref'))) {
             return;
         }
 
+        $payload = ['ref' => config('statamic-github-workflow-dispatch.ref')];
+
+        if ($site = $this->siteInput()) {
+            $payload['inputs'] = ['site' => $site];
+        }
+
         Http::withToken(config('statamic-github-workflow-dispatch.token'))
-            ->post('https://api.github.com/repos/'. config('statamic-github-workflow-dispatch.owner') . '/'. config('statamic-github-workflow-dispatch.repo') . '/actions/workflows/'. config('statamic-github-workflow-dispatch.workflow_id') . '/dispatches', [
-                'ref' => $this->ref(),
-            ]);
+            ->post('https://api.github.com/repos/'. config('statamic-github-workflow-dispatch.owner') . '/'. config('statamic-github-workflow-dispatch.repo') . '/actions/workflows/'. config('statamic-github-workflow-dispatch.workflow_id') . '/dispatches', $payload);
     }
 
     /**
-     * In multisite mode the affected site determines the ref, using the
-     * configured sites map or falling back to the site handle itself.
+     * The ref must be a real branch or tag, so in multisite mode the
+     * affected site is passed as a `site` workflow input instead, using
+     * the configured sites map or falling back to the site handle itself.
      */
-    protected function ref(): ?string
+    protected function siteInput(): ?string
     {
         if (config('statamic-github-workflow-dispatch.multisite') && $this->siteHandle) {
             return config("statamic-github-workflow-dispatch.sites.{$this->siteHandle}", $this->siteHandle);
         }
 
-        return config('statamic-github-workflow-dispatch.ref');
+        return null;
     }
 }
