@@ -11,7 +11,7 @@ class GlobalSetSavedListener implements ShouldQueue
     public function handle(GlobalSetSaved $event): void
     {
         if (config('statamic-github-workflow-dispatch.event-types.global-set')) {
-            DispatchGithubWorkflowJob::dispatch();
+            DispatchGithubWorkflowJob::dispatchForAllSites();
         }
     }
 }
