@@ -11,7 +11,7 @@ class BlueprintSavedListener implements ShouldQueue
     public function handle(BlueprintSaved $event): void
     {
         if ($event->blueprint->namespace() === 'forms' && config('statamic-github-workflow-dispatch.event-types.form')) {
-            DispatchGithubWorkflowJob::dispatch();
+            DispatchGithubWorkflowJob::dispatchForAllSites();
         }
     }
 }

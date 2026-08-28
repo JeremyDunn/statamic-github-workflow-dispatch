@@ -16,5 +16,11 @@
                 "DoeAnderson\\StatamicGithubWorkflowDispatch\\ServiceProvider"
             ]
         }
+    },
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "statamic/cms": "^6.29"
     }
 }

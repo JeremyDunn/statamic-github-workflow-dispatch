@@ -14,7 +14,7 @@ class GithubWorkflowDispatchUtilityController extends Controller
 
     public function dispatch()
     {
-        DispatchGithubWorkflowJob::dispatch();
+        DispatchGithubWorkflowJob::dispatchForAllSites();
 
         return back()->withSuccess(__('Workflow dispatched.'));
     }
