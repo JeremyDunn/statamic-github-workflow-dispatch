@@ -28,7 +28,7 @@ GITHUB_DISPATCH_WORKFLOWS=true
 GITHUB_MULTISITE=false
 ```
 
-When a configured Statamic event fires (entry, term, nav, global set, collection, taxonomy, or form changes), the addon dispatches the GitHub Actions workflow using `GITHUB_REF` as the ref. You can also trigger it manually from the GitHub Workflow Dispatch utility in the control panel.
+When a configured Statamic event fires (entry, term, nav, global set, collection, taxonomy, or form changes), the addon dispatches the GitHub Actions workflow using `GITHUB_REF` as the ref. You can also trigger it manually from the GitHub Workflow Dispatch utility in the control panel. In multisite mode the utility lets you pick which sites to dispatch, one workflow run per selected site.
 
 ### Multisite
 
